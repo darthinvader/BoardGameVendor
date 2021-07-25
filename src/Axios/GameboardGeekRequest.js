@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const gameboardGeekRequest = axios.create({
+const gameboardGeekJSONRequest = axios.create({
   method: "GET",
   baseURL: "https://www.boardgamegeek.com",
   headers: {
@@ -8,4 +8,9 @@ const gameboardGeekRequest = axios.create({
   },
 });
 
-export default gameboardGeekRequest;
+export const gameboardGeekRequest = axios.create({
+  method: "GET",
+  baseURL: "https://www.boardgamegeek.com",
+});
+
+export default gameboardGeekJSONRequest;
