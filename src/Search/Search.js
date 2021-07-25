@@ -1,25 +1,23 @@
 import { useEffect, useState } from "react";
 import gameboardGeekRequest from "../Axios/GameboardGeekRequest";
-import { Parser } from "xml2js";
 const Search = () => {
   const [games, setGames] = useState([]);
+
+  const search = (searchTerm) => {
+    searchTerm.replaceAll(" ", "+");
+  };
+
   useEffect(() => {
     (async () => {
       const response = await gameboardGeekRequest(
-        "search?query=star&type=boardgame,boardgameexpansion,boardgameaccessory"
+        "/search/boardgame?q=star+wars&showcount=20"
       );
       console.log(response);
-      const parser = new Parser({ explicitArray: false });
-      const xml = response.data;
-
-      parser.parseString(xml, (err, result) => {
-        if (err) {
-          throw err;
-        }
-        setGames(result["items"]["item"]);
-      });
+      setGames(response.data);
     })();
   }, []);
+
+  // useEffect(() => console.log(games), [games]);
 
   return <div></div>;
 };
