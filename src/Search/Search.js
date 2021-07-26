@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Parser } from "xml2js";
 import gameboardGeekJSONRequest, {
   gameboardGeekRequest,
 } from "../Axios/GameboardGeekRequest";
+import SearchBar from "./SearchBar/SearchBar";
 
 const Search = () => {
   const [games, setGames] = useState([]);
@@ -54,7 +55,7 @@ const Search = () => {
     });
   };
 
-  return <div></div>;
+  return <SearchBar />;
 };
 
 export default Search;
