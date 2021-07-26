@@ -3,6 +3,7 @@ import { Parser } from "xml2js";
 import gameboardGeekJSONRequest, {
   gameboardGeekRequest,
 } from "../Axios/GameboardGeekRequest";
+import Results, { NO_GAMES_FOUND } from "../Results/Results";
 import SearchBar from "./SearchBar/SearchBar";
 
 const Search = () => {
@@ -16,9 +17,12 @@ const Search = () => {
     setGames(() => []);
     const requestSearchTerm = searchTerm.replaceAll(" ", "+");
     const response = await gameboardGeekRequest(
-      `/search/boardgame?q=${requestSearchTerm}&showcount=1`
+      `/search/boardgame?q=${requestSearchTerm}&showcount=10`
     );
     const gamesData = response.data.items;
+    if (gamesData.length === 0) {
+      setGames(() => NO_GAMES_FOUND);
+    }
     for (const gameData of gamesData) {
       getAndSetGame(gameData);
     }
@@ -51,9 +55,13 @@ const Search = () => {
       return destructedOldState;
     });
   };
-  console.log(games);
 
-  return <SearchBar search={search} />;
+  return (
+    <>
+      <SearchBar search={search} />
+      <Results games={games} />
+    </>
+  );
 };
 
 export default Search;
