@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Parser } from "xml2js";
 import gameboardGeekJSONRequest, {
   gameboardGeekRequest,
@@ -7,20 +7,18 @@ import SearchBar from "./SearchBar/SearchBar";
 
 const Search = () => {
   const [games, setGames] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
 
   // When the search activates , we need to fetch the games from the json API from BoardGameGeeks
   // Note you need to deactivate CORS in the browser if you are running on localhost
   // Todo this in windows go to your chrome or chromium engine browser folder and run
   // launcher.exe --disable-web-security --user-data-dir="c:\nocorsbrowserdata"
   const search = async (searchTerm) => {
-    searchTerm.replaceAll(" ", "+");
+    setGames(() => []);
+    const requestSearchTerm = searchTerm.replaceAll(" ", "+");
     const response = await gameboardGeekRequest(
-      `/search/boardgame?q=${searchTerm}&showcount=2`
+      `/search/boardgame?q=${requestSearchTerm}&showcount=1`
     );
     const gamesData = response.data.items;
-
-    console.log(gamesData[0]);
     for (const gameData of gamesData) {
       getAndSetGame(gameData);
     }
@@ -39,7 +37,6 @@ const Search = () => {
     if (!thingGame) {
       return;
     }
-    console.log(thingGame);
     game.description = thingGame?.description;
     game.thumbnail = thingGame?.thumbnail;
     game.maxPlayers = thingGame?.maxplayers?.$;
@@ -47,16 +44,16 @@ const Search = () => {
     game.minAge = thingGame?.minage?.$;
     game.minPlaytime = thingGame?.minplaytime?.$;
     game.maxPlaytime = thingGame?.maxplaytime?.$;
-
-    // Atomic set operation because getItemById is async.
+    // Atomic set operation because getItemByI`d is async.
     setGames((oldState) => {
-      oldState.push(game);
-      console.log(games);
-      return oldState;
+      const destructedOldState = [...oldState];
+      destructedOldState.push(game);
+      return destructedOldState;
     });
   };
+  console.log(games);
 
-  return <SearchBar setSearchTerm={setSearchTerm} search={searchTerm} />;
+  return <SearchBar search={search} />;
 };
 
 export default Search;
