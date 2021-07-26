@@ -12,6 +12,7 @@ const SearchBar = ({ search }) => {
         placeholder="Search"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        onKeyUp={(e) => (e.key === "Enter" ? search(searchTerm) : null)}
       />
       <button
         onClick={() => search(searchTerm)}
