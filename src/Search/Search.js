@@ -6,44 +6,51 @@ import gameboardGeekJSONRequest, {
 
 const Search = () => {
   const [games, setGames] = useState([]);
-  const search = (searchTerm) => {
+  const search = async (searchTerm) => {
     searchTerm.replaceAll(" ", "+");
+    const response = await gameboardGeekRequest(
+      `/search/boardgame?q=${searchTerm}&showcount=2`
+    );
+    const gamesData = response.data.items;
+
+    console.log(gamesData[0]);
+    for (const gameData of gamesData) {
+      getAndSetGame(gameData);
+    }
   };
 
   useEffect(() => {
-    (async () => {
-      const response = await gameboardGeekRequest(
-        "/search/boardgame?q=star+wars&showcount=20"
-      );
-      setGames(() => response.data);
-    })();
-
-    getItemsById("187645");
+    search("star wars");
   }, []);
 
-  const getItemsById = async (id, index) => {
+  const getAndSetGame = async (game) => {
+    const id = game.id;
     const response = await gameboardGeekJSONRequest(`xmlapi2/thing?id=${id}`);
     const parser = new Parser({ explicitArray: false });
     const xml = response.data;
-    parser.parseString(xml, (err, result) => {
-      if (err) {
-        throw err;
-      }
-      console.log(result);
-      const item = result.items.item;
-      const thumbnail = item.thumbnail;
-      const minPlayers = item.minplayers.$.value;
-      const maxPlayers = item.maxplayers.$.value;
-      const minPlayTime = item.minplaytime.$.value;
-      const maxPlayTime = item.maxplaytime.$.value;
-      const minAge = item.minage.$.value;
-      const description = item.description;
+    const par = await parser.parseStringPromise(xml);
+    const thingGame = par?.items?.item;
 
-      setGames((games) => {});
+    // Guard clause
+    if (!thingGame) {
+      return;
+    }
+    console.log(thingGame);
+    game.description = thingGame?.description;
+    game.thumbnail = thingGame?.thumbnail;
+    game.maxPlayers = thingGame?.maxplayers?.$;
+    game.minPlayers = thingGame?.minplayers?.$;
+    game.minAge = thingGame?.minage?.$;
+    game.minPlaytime = thingGame?.minplaytime?.$;
+    game.maxPlaytime = thingGame?.maxplaytime?.$;
+
+    // Atomic set operation because getItemById is async.
+    setGames((oldState) => {
+      oldState.push(game);
+      console.log(games);
+      return oldState;
     });
   };
-
-  useEffect(() => console.log(games), [games]);
 
   return <div></div>;
 };
