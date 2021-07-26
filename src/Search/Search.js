@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Parser } from "xml2js";
 import gameboardGeekJSONRequest, {
   gameboardGeekRequest,
@@ -7,6 +7,7 @@ import SearchBar from "./SearchBar/SearchBar";
 
 const Search = () => {
   const [games, setGames] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   // When the search activates , we need to fetch the games from the json API from BoardGameGeeks
   // Note you need to deactivate CORS in the browser if you are running on localhost
@@ -55,7 +56,7 @@ const Search = () => {
     });
   };
 
-  return <SearchBar />;
+  return <SearchBar setSearchTerm={setSearchTerm} search={searchTerm} />;
 };
 
 export default Search;
