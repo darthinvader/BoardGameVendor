@@ -6,6 +6,11 @@ import gameboardGeekJSONRequest, {
 
 const Search = () => {
   const [games, setGames] = useState([]);
+
+  // When the search activates , we need to fetch the games from the json API from BoardGameGeeks
+  // Note you need to deactivate CORS in the browser if you are running on localhost
+  // Todo this in windows go to your chrome or chromium engine browser folder and run
+  // launcher.exe --disable-web-security --user-data-dir="c:\nocorsbrowserdata"
   const search = async (searchTerm) => {
     searchTerm.replaceAll(" ", "+");
     const response = await gameboardGeekRequest(
@@ -19,10 +24,7 @@ const Search = () => {
     }
   };
 
-  useEffect(() => {
-    search("star wars");
-  }, []);
-
+  // Gets the game from the xml api of boardgamegeek.com and sets it in the state
   const getAndSetGame = async (game) => {
     const id = game.id;
     const response = await gameboardGeekJSONRequest(`xmlapi2/thing?id=${id}`);
