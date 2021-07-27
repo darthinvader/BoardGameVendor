@@ -14,7 +14,7 @@ const Results = ({ games }) => {
     <Boardgame game={game} key={game.description} />
   ));
   console.log(boardGames);
-  return <div className={styles.GamesContainer}>{boardGames}</div>;
+  return <div className={styles.BoardGamesContainer}>{boardGames}</div>;
 };
 
 export const NO_GAMES_FOUND = "No games found";
