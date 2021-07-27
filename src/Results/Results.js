@@ -10,8 +10,8 @@ const Results = ({ games }) => {
     return null;
   }
   console.log("LETS GO GAMES");
-  const boardGames = games.map((game) => (
-    <Boardgame game={game} key={game.description} />
+  const boardGames = games.map((game, i) => (
+    <Boardgame game={game} key={game.title + i} />
   ));
   console.log(boardGames);
   return <div className={styles.BoardGamesContainer}>{boardGames}</div>;

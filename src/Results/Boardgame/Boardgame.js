@@ -27,14 +27,16 @@ const Boardgame = ({ game }) => {
   }
 
   let subDescription = "";
-  if (width >= 550) {
-    subDescription = description.substring(0, 500) + "...";
+  if (width >= 1000) {
+    subDescription = description.substring(0, 700) + "...";
   } else if (width < 370) {
     subDescription = description.substring(0, 140) + "...";
   } else if (width < 400) {
     subDescription = description.substring(0, 200) + "...";
   } else if (width < 550) {
     subDescription = description.substring(0, 300) + "...";
+  } else if (width < 1000) {
+    subDescription = description.substring(0, 500) + "...";
   }
   return (
     <div className={styles.BoardGame}>
