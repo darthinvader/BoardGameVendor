@@ -11,7 +11,7 @@ const Results = ({ games }) => {
   }
   console.log("LETS GO GAMES");
   const boardGames = games.map((game, i) => (
-    <Boardgame game={game} key={game.title + i} />
+    <Boardgame game={game} key={game.title + i.toString()} />
   ));
   console.log(boardGames);
   return <div className={styles.BoardGamesContainer}>{boardGames}</div>;
