@@ -49,6 +49,7 @@ const Search = () => {
     game.minAge = thingGame?.minage?.$.value;
     game.minPlaytime = thingGame?.minplaytime?.$.value;
     game.maxPlaytime = thingGame?.maxplaytime?.$.value;
+    game.yearPublished = thingGame?.yearpublished?.$.value;
     // Atomic set operation because getItemByI`d is async.
     setGames((oldState) => {
       const destructedOldState = [...oldState];

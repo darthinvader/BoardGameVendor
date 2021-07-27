@@ -14,7 +14,11 @@ const Boardgame = ({ game }) => {
   const minAge = game.minAge;
   const minPlaytime = game.minPlaytime;
   const maxPlaytime = game.maxPlaytime;
-  const title = game.name;
+
+  let title = game.name;
+  if (game.yearPublished) {
+    title += `(${game.yearPublished})`;
+  }
 
   let playtime = `${minPlaytime} - ${maxPlaytime}`;
   if (minPlaytime === maxPlaytime) {
