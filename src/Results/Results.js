@@ -6,14 +6,11 @@ const Results = ({ games }) => {
     return <div className="no-results">No results found</div>;
   }
   if (games.length === 0) {
-    console.log("Hello");
     return null;
   }
-  console.log("LETS GO GAMES");
   const boardGames = games.map((game, i) => (
     <Boardgame game={game} key={game.title + i.toString()} />
   ));
-  console.log(boardGames);
   return <div className={styles.BoardGamesContainer}>{boardGames}</div>;
 };
 
