@@ -15,6 +15,17 @@ const Boardgame = ({ game }) => {
   const minPlaytime = game.minPlaytime;
   const maxPlaytime = game.maxPlaytime;
   const title = game.name;
+
+  let playtime = `${minPlayers} - ${maxPlayers}`;
+  if (minPlaytime === maxPlaytime) {
+    playtime = minPlayers;
+  }
+
+  let players = `${minPlayers} - ${maxPlayers}`;
+  if (minPlayers === maxPlayers) {
+    players = minPlayers;
+  }
+
   let subDescription = "";
   if (width >= 550) {
     subDescription = description.substring(0, 500) + "...";
@@ -32,10 +43,10 @@ const Boardgame = ({ game }) => {
       <p className={styles.Description}>{subDescription}</p>
       <div className={styles.Information}>
         <div>
-          <IoIosPeople /> {minPlayers}-{maxPlayers}
+          <IoIosPeople /> {players}
         </div>
         <div>
-          <BsClock /> {minPlaytime}-{maxPlaytime}
+          <BsClock /> {playtime}
         </div>
         <div>
           <GiAges /> {minAge}+
