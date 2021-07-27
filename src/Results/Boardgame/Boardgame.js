@@ -18,6 +18,8 @@ const Boardgame = ({ game }) => {
   let subDescription = "";
   if (width >= 550) {
     subDescription = description.substring(0, 500) + "...";
+  } else if (width < 370) {
+    subDescription = description.substring(0, 140) + "...";
   } else if (width < 400) {
     subDescription = description.substring(0, 200) + "...";
   } else if (width < 550) {
