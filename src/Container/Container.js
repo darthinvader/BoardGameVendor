@@ -5,6 +5,7 @@ import gameboardGeekJSONRequest, {
 } from "../Axios/GameboardGeekRequest";
 import Results, {
   GAMES_DOWNLOAD_ERROR,
+  GAMES_LOADING,
   NO_GAMES_FOUND,
 } from "../Results/Results";
 import SearchBar from "../Search/Search";
@@ -15,6 +16,8 @@ const Search = () => {
   const [games, setGames] = useState([]);
 
   useEffect(() => {
+    if (searchTerm === "") return;
+
     // If the user types something in the search bar, cancel the previous request
     let canceled = false;
 
@@ -22,14 +25,15 @@ const Search = () => {
     // Note you need to deactivate CORS in the browser if you are running on localhost
     // Todo this in windows go to your chrome or chromium engine browser folder and run
     // launcher.exe --disable-web-security --user-data-dir="c:\nocorsbrowserdata"
+    setGames((oldState) => {
+      if (canceled) {
+        return oldState;
+      }
+      return GAMES_LOADING;
+    });
+    const requestSearchTerm = searchTerm.replaceAll(" ", "+");
+
     (async () => {
-      setGames((oldState) => {
-        if (canceled) {
-          return oldState;
-        }
-        return [];
-      });
-      const requestSearchTerm = searchTerm.replaceAll(" ", "+");
       const response = await gameboardGeekRequest(
         `/search/boardgame?q=${requestSearchTerm}&showcount=10`
       );
