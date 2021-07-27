@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import styles from "./Search.module.scss";
-const SearchBar = ({ search }) => {
+const SearchBar = ({ setTerm }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
@@ -12,10 +12,10 @@ const SearchBar = ({ search }) => {
         placeholder="Search"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        onKeyUp={(e) => (e.key === "Enter" ? search(searchTerm) : null)}
+        onKeyUp={(e) => (e.key === "Enter" ? setTerm(searchTerm) : null)}
       />
       <button
-        onClick={() => search(searchTerm)}
+        onClick={() => setTerm(searchTerm)}
         className={styles.SearchBarButton}
       >
         <BsSearch />

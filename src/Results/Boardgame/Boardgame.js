@@ -6,7 +6,6 @@ import useWindowDimensions from "./useWindowDimensions";
 
 const Boardgame = ({ game }) => {
   const { width } = useWindowDimensions();
-
   const description = game.description;
   const thumbnail = game.thumbnail;
   const maxPlayers = game.maxPlayers;
