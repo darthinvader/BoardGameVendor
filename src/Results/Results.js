@@ -1,6 +1,6 @@
 import Boardgame from "./Boardgame/Boardgame";
 import styles from "./Results.module.scss";
-
+import { ImSpinner2 } from "react-icons/im";
 const Results = ({ games }) => {
   if (games === NO_GAMES_FOUND) {
     return <div className="no-results">No results found</div>;
@@ -9,7 +9,11 @@ const Results = ({ games }) => {
     return <div className="error">Error</div>;
   }
   if (games === GAMES_LOADING) {
-    return <div className="error">Loading</div>;
+    return (
+      <div className={styles.Spinner}>
+        <ImSpinner2 />
+      </div>
+    );
   }
   if (games.length === 0) {
     return null;
