@@ -13,25 +13,27 @@ const Boardgame = ({ game }) => {
   const maxPlaytime = game.maxPlaytime;
   const title = game.name;
 
-  <div className={styles.Boardgame}>
-    <img alt={title} src={thumbnail} className={styles.Image} />
-    <h2 className={styles.Title}>{title}</h2>
-    <p className={styles.Description}>{description}</p>
-    <div className={styles.Information}>
-      <div>
-        <IoIosPeople /> {minPlayers}-{maxPlayers}
-      </div>
-      <div>
-        <BsClock /> {minPlaytime}-{maxPlaytime}
-      </div>
-      <div>
-        <GiAges /> {minAge}+
-      </div>
-      <div>
-        <BsFillHeartFill />
+  return (
+    <div className={styles.Boardgame}>
+      <img alt={title} src={thumbnail} className={styles.Image} />
+      <h2 className={styles.Title}>{title}</h2>
+      <p className={styles.Description}>{description}</p>
+      <div className={styles.Information}>
+        <div>
+          <IoIosPeople /> {minPlayers}-{maxPlayers}
+        </div>
+        <div>
+          <BsClock /> {minPlaytime}-{maxPlaytime}
+        </div>
+        <div>
+          <GiAges /> {minAge}+
+        </div>
+        <div>
+          <BsFillHeartFill />
+        </div>
       </div>
     </div>
-  </div>;
+  );
 };
 
 export default Boardgame;

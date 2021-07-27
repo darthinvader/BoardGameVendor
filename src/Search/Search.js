@@ -8,7 +8,6 @@ import SearchBar from "./SearchBar/SearchBar";
 
 const Search = () => {
   const [games, setGames] = useState([]);
-
   // When the search activates , we need to fetch the games from the json API from BoardGameGeeks
   // Note you need to deactivate CORS in the browser if you are running on localhost
   // Todo this in windows go to your chrome or chromium engine browser folder and run
@@ -43,11 +42,11 @@ const Search = () => {
     }
     game.description = thingGame?.description;
     game.thumbnail = thingGame?.thumbnail;
-    game.maxPlayers = thingGame?.maxplayers?.$;
-    game.minPlayers = thingGame?.minplayers?.$;
-    game.minAge = thingGame?.minage?.$;
-    game.minPlaytime = thingGame?.minplaytime?.$;
-    game.maxPlaytime = thingGame?.maxplaytime?.$;
+    game.maxPlayers = thingGame?.maxplayers?.$.value;
+    game.minPlayers = thingGame?.minplayers?.$.value;
+    game.minAge = thingGame?.minage?.$.value;
+    game.minPlaytime = thingGame?.minplaytime?.$.value;
+    game.maxPlaytime = thingGame?.maxplaytime?.$.value;
     // Atomic set operation because getItemByI`d is async.
     setGames((oldState) => {
       const destructedOldState = [...oldState];
@@ -57,10 +56,10 @@ const Search = () => {
   };
 
   return (
-    <>
+    <div>
       <SearchBar search={search} />
       <Results games={games} />
-    </>
+    </div>
   );
 };
 
