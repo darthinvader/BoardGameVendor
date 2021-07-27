@@ -9,7 +9,6 @@ import Results, {
   NO_GAMES_FOUND,
 } from "../Results/Results";
 import SearchBar from "../Search/Search";
-import styles from "./SearchContainer.module.scss";
 
 const SearchContainer = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -112,10 +111,10 @@ const SearchContainer = () => {
   };
 
   return (
-    <div className={styles.Container}>
+    <>
       <SearchBar setTerm={setSearchTerm} />
       <Results games={games} />
-    </div>
+    </>
   );
 };
 
