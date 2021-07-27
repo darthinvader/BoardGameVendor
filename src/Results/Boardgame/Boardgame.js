@@ -5,7 +5,7 @@ import styles from "./Boardgame.module.scss";
 import useWindowDimensions from "./useWindowDimensions";
 
 const Boardgame = ({ game }) => {
-  const { width, _ } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   const description = game.description;
   const thumbnail = game.thumbnail;
