@@ -41,7 +41,8 @@ const Search = () => {
     if (!thingGame) {
       return;
     }
-    game.description = thingGame?.description;
+    // description also needs to remove all special html character like &#10
+    game.description = thingGame?.description?.replace(/&(.*?);/gi, "");
     game.thumbnail = thingGame?.thumbnail;
     game.maxPlayers = thingGame?.maxplayers?.$.value;
     game.minPlayers = thingGame?.minplayers?.$.value;
