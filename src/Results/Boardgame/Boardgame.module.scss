@@ -9,8 +9,11 @@
   margin-top: 2rem;
   border-radius: 5px;
 
-  @media screen and (max-width: 800px) {
-    grid-template-rows: 5rem 200px 30px;
+  @media screen and (max-width: 50em) {
+    grid-template-rows: 6rem 200px 30px;
+  }
+  @media screen and (max-width: 31.25em) {
+    grid-template-rows: 8rem 200px 30px;
   }
 }
 
@@ -25,6 +28,10 @@
   align-self: stretch;
   background-color: #1266f1;
   color: white;
+
+  @media screen and (max-width: 62.5em) {
+    font-size: 1.8rem;
+  }
 }
 
 .Description {
@@ -41,7 +48,7 @@
   max-height: 150px;
   grid-column: 1 / 2;
   grid-row: 2 / 3;
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 37.5em) {
     max-width: 100px;
     max-height: 100px;
   }
@@ -53,9 +60,10 @@
   align-items: center;
   grid-column: 2 / -1;
   grid-row: 3 / 4;
-  font-size: 1.8rem;
-  @media screen and (max-width: 600px) {
+  font-size: 2.5rem;
+  @media screen and (max-width: 37.5em) {
     grid-column: 1 / -1;
+    font-size: 2rem;
   }
 }
 
