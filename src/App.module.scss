@@ -2,27 +2,3 @@
   max-width: 1200px;
   margin: 0 auto;
 }
-
-.Navbar {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-}
-
-.NavElement {
-  font-size: 2rem;
-  cursor: pointer;
-  border: 1px solid black;
-  width: 100%;
-  text-align: center;
-
-  &Active {
-    background-color: #1266f1;
-    color: white;
-  }
-
-  &:hover {
-    background-color: #1266a1;
-    color: white;
-  }
-}
