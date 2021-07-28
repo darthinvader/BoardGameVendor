@@ -21,9 +21,7 @@ const SearchContainer = () => {
     let canceled = false;
 
     // When the search activates , we need to fetch the games from the json API from BoardGameGeeks
-    // Note you need to deactivate CORS in the browser if you are running on localhost
-    // Todo this in windows go to your chrome or chromium engine browser folder and run
-    // launcher.exe --disable-web-security --user-data-dir="c:\nocorsbrowserdata"
+    // Note you need to go to https://cors-anywhere.herokuapp.com/corsdemo to activate it
     setGames((oldState) => {
       if (canceled) {
         return oldState;
