@@ -2,7 +2,7 @@ import axios from "axios";
 
 const gameboardGeekJSONRequest = axios.create({
   method: "GET",
-  baseURL: "https://www.boardgamegeek.com",
+  baseURL: "https://cors-anywhere.herokuapp.com/https://www.boardgamegeek.com",
   headers: {
     accept: "application/json, text/plain, */*",
   },
@@ -10,7 +10,7 @@ const gameboardGeekJSONRequest = axios.create({
 
 export const gameboardGeekRequest = axios.create({
   method: "GET",
-  baseURL: "https://www.boardgamegeek.com",
+  baseURL: "https://cors-anywhere.herokuapp.com/https://www.boardgamegeek.com",
 });
 
 export default gameboardGeekJSONRequest;
