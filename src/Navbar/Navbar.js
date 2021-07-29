@@ -16,12 +16,14 @@ const Navbar = () => {
 
   return (
     <div className={styles.Navbar}>
-      <div className={styles.NavElement + " " + SearchActive}>
-        <Link to="/">Search</Link>
-      </div>
-      <div className={styles.NavElement + " " + FavoritesActive}>
-        <Link to="/Favorites">Favorites</Link>
-      </div>
+      <Link to="/">
+        <div className={styles.NavElement + " " + SearchActive}>Search</div>
+      </Link>
+      <Link to="/Favorites">
+        <div className={styles.NavElement + " " + FavoritesActive}>
+          Favorites
+        </div>
+      </Link>
     </div>
   );
 };
