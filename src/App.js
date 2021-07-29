@@ -9,7 +9,6 @@ function App() {
     <div className={styles.Container}>
       <Router>
         <Navbar />
-        <Link to="/">AAAAAAAAAAAAA</Link>
         <Switch>
           <Route exact path="/">
             <SearchContainer />
