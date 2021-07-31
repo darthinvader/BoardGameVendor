@@ -1,15 +1,7 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useDB } from "../Context/DBContext";
 
 const FavoritesContainer = () => {
-  const [games, setGames] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const games = await axios.get("http://localhost:8080/games");
-      setGames(games.data);
-    })();
-  }, []);
+  const games = useDB();
 
   return <p>Loading...</p>;
 };

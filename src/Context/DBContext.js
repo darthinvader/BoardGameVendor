@@ -11,17 +11,17 @@ const DBProvider = ({ children }) => {
   const [DBGames, setDBGames] = useState("loading");
 
   useEffect(() => {
-    updateDBGames();
+    getDBGames();
   }, []);
 
-  const updateDBGames = async () => {
+  const getDBGames = async () => {
     const games = axios.get("http://localhost:8080/games");
     setDBGames(await games.data);
   };
 
   return (
     <DBContext.Provider value={DBGames}>
-      <DBUpdateContext.Provider value={updateDBGames}>
+      <DBUpdateContext.Provider value={getDBGames}>
         {children}
       </DBUpdateContext.Provider>
     </DBContext.Provider>
