@@ -15,7 +15,7 @@ const DBProvider = ({ children }) => {
   }, []);
 
   const getDBGames = async () => {
-    const games = axios.get("http://localhost:8080/games");
+    const games = await axios.get("http://localhost:8080/games");
     setDBGames(await games.data);
   };
 
