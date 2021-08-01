@@ -5,7 +5,7 @@ export const useDB = () => DBContext;
 export const useDBUpdatae = () => DBUpdateContext;
 
 const DBContext = React.createContext("loading");
-const DBUpdateContext = React.createContext();
+const DBUpdateContext = React.createContext({});
 
 const DBProvider = ({ children }) => {
   const [DBGames, setDBGames] = useState("loading");
