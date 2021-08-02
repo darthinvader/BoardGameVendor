@@ -1,6 +1,7 @@
 import { BsClock, BsFillHeartFill } from "react-icons/bs";
 import { GiAges } from "react-icons/gi";
 import { IoIosPeople } from "react-icons/io";
+import { useDBUpdate } from "../../Context/DBContext";
 import styles from "./Boardgame.module.scss";
 import useWindowDimensions from "./useWindowDimensions";
 
@@ -13,6 +14,8 @@ const Boardgame = ({ game }) => {
   const minAge = game.minAge;
   const minPlaytime = game.minPlaytime;
   const maxPlaytime = game.maxPlaytime;
+
+  const { addGameToDB } = useDBUpdate();
 
   let title = game.name;
   if (game.yearPublished) {
@@ -56,7 +59,7 @@ const Boardgame = ({ game }) => {
         <div>
           <GiAges /> {minAge}+
         </div>
-        <div className={styles.Favorite}>
+        <div className={styles.Favorite} onClick={() => addGameToDB(game)}>
           <BsFillHeartFill />
         </div>
       </div>
