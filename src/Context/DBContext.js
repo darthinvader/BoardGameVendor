@@ -27,9 +27,8 @@ const DBProvider = ({ children }) => {
   );
 
   const updateGame = useCallback(
-    (game, description) => {
-      const id = game.id;
-      const update = { description };
+    (id, notes) => {
+      const update = { notes };
 
       axios
         .patch(`http://localhost:8080/games/${id}`, update)
