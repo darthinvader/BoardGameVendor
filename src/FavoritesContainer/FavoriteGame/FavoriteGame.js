@@ -6,10 +6,10 @@ import { GiAges } from "react-icons/gi";
 import { IoIosPeople } from "react-icons/io";
 import { useDBUpdate } from "../../Context/DBContext";
 
-const FavoriteGame = (game) => {
+const FavoriteGame = ({ game }) => {
   const [notes, setNotes] = useState(game.notes);
   const [id, setId] = useState(game.id);
-  const { updateGame, deleteGame } = useDBUpdate;
+  const { updateGame, deleteGame } = useDBUpdate();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
