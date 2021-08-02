@@ -1,6 +1,6 @@
 import { useDB } from "../Context/DBContext";
 import FavoriteGame from "./FavoriteGame/FavoriteGame";
-
+import styles from "./FavoritesContainer.module.scss";
 const FavoritesContainer = () => {
   const games = useDB();
   if (games === "loading") {
@@ -11,7 +11,7 @@ const FavoritesContainer = () => {
     <FavoriteGame game={game} key={game.href} />
   ));
 
-  return <div>{boardGames}</div>;
+  return <div className={styles.BoardGamesContainer}>{boardGames}</div>;
 };
 
 export default FavoritesContainer;
