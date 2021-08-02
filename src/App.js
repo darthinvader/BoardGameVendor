@@ -1,7 +1,7 @@
 import SearchContainer from "./SearchContainer/SearchContainer";
 import FavoritesContainer from "./FavoritesContainer/FavoritesContainer";
 import styles from "./App.module.scss";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import DBProvider from "./Context/DBContext";
 
