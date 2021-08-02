@@ -9,12 +9,15 @@ import { useDBUpdate } from "../../Context/DBContext";
 const FavoriteGame = (game) => {
   const [notes, setNotes] = useState(game.notes);
   const [id, setId] = useState(game.id);
-  const { updateGame } = useDBUpdate;
+  const { updateGame, deleteGame } = useDBUpdate;
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       updateGame(id, notes);
     }, 1000);
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [notes, id, updateGame]);
 
   const { width } = useWindowDimensions();
@@ -73,7 +76,10 @@ const FavoriteGame = (game) => {
         <div>
           <GiAges /> {minAge}+
         </div>
-        <div className={styles.Favorite + " " + styles.active}>
+        <div
+          className={styles.Favorite + " " + styles.active}
+          onClick={() => deleteGame(id)}
+        >
           <BsFillHeartFill />
         </div>
       </div>
