@@ -39,7 +39,9 @@ const DBProvider = ({ children }) => {
 
   const deleteGame = useCallback(
     (id) => {
-      axios.delete(`http://localhost:8080/games/${id}`).then(getDBGames());
+      axios
+        .delete(`http://localhost:8080/games/${id}`)
+        .then(() => getDBGames());
     },
     [getDBGames]
   );
