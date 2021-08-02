@@ -1,11 +1,21 @@
 import { BsClock, BsFillHeartFill } from "react-icons/bs";
 import { GiAges } from "react-icons/gi";
 import { IoIosPeople } from "react-icons/io";
-import { useDBUpdate } from "../../Context/DBContext";
+import { useDB, useDBUpdate } from "../../Context/DBContext";
 import styles from "./Boardgame.module.scss";
 import useWindowDimensions from "./useWindowDimensions";
 
 const Boardgame = ({ game }) => {
+  const games = useDB();
+
+  let favoriteActive = null;
+  if (games !== "loading") {
+    if (games.some((favoriteGame) => favoriteGame.id === game.id)) {
+      favoriteActive = styles.active;
+      console.log("HELLOO");
+    }
+  }
+
   const { width } = useWindowDimensions();
   const description = game.description;
   const thumbnail = game.thumbnail;
@@ -15,7 +25,15 @@ const Boardgame = ({ game }) => {
   const minPlaytime = game.minPlaytime;
   const maxPlaytime = game.maxPlaytime;
 
-  const { addGameToDB } = useDBUpdate();
+  const { addGameToDB, deleteGame } = useDBUpdate();
+
+  const addOrRemoveFavorite = () => {
+    if (favoriteActive != null) {
+      deleteGame(game.id);
+    } else {
+      addGameToDB(game);
+    }
+  };
 
   let title = game.name;
   if (game.yearPublished) {
@@ -59,7 +77,10 @@ const Boardgame = ({ game }) => {
         <div>
           <GiAges /> {minAge}+
         </div>
-        <div className={styles.Favorite} onClick={() => addGameToDB(game)}>
+        <div
+          className={styles.Favorite + " " + favoriteActive}
+          onClick={addOrRemoveFavorite}
+        >
           <BsFillHeartFill />
         </div>
       </div>
