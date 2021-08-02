@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useWindowDimensions from "../../Results/Boardgame/useWindowDimensions";
 import styles from "./FavoriteGame.module.scss";
 import { BsClock, BsFillHeartFill } from "react-icons/bs";
 import { GiAges } from "react-icons/gi";
 import { IoIosPeople } from "react-icons/io";
+import { useDBUpdate } from "../../Context/DBContext";
 
 const FavoriteGame = (game) => {
   const [notes, setNotes] = useState(game.notes);
+  const [id, setId] = useState(game.id);
+  const { updateGame } = useDBUpdate;
+
+  useEffect(() => {
+    setTimeout(() => {
+      updateGame(id, notes);
+    }, 1000);
+  }, [notes, id, updateGame]);
 
   const { width } = useWindowDimensions();
   const description = game.description;
@@ -34,15 +43,15 @@ const FavoriteGame = (game) => {
 
   let subDescription = "";
   if (width >= 1000) {
-    subDescription = description.substring(0, 700) + "...";
-  } else if (width < 370) {
-    subDescription = description.substring(0, 140) + "...";
-  } else if (width < 400) {
-    subDescription = description.substring(0, 200) + "...";
-  } else if (width < 550) {
-    subDescription = description.substring(0, 300) + "...";
-  } else if (width < 1000) {
     subDescription = description.substring(0, 500) + "...";
+  } else if (width < 370) {
+    subDescription = description.substring(0, 100) + "...";
+  } else if (width < 400) {
+    subDescription = description.substring(0, 120) + "...";
+  } else if (width < 550) {
+    subDescription = description.substring(0, 200) + "...";
+  } else if (width < 1000) {
+    subDescription = description.substring(0, 350) + "...";
   }
   return (
     <div className={styles.BoardGame}>
