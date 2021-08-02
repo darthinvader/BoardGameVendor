@@ -59,7 +59,7 @@ const FavoriteGame = (game) => {
       <h2 className={styles.Title}>{title}</h2>
       <p className={styles.Description}>{subDescription}</p>
       <textarea
-        className="Textarea"
+        className={styles.Textarea}
         value={notes}
         onChange={(e) => setNotes(e.target.value)}
       ></textarea>
