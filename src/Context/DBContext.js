@@ -12,13 +12,13 @@ const DBProvider = ({ children }) => {
 
   const getDBGames = useCallback(async () => {
     const games = await axios.get("http://localhost:8080/games");
-    setDBGames(await games.data);
+    setDBGames(games.data);
   }, []);
 
   const addGameToDB = useCallback(
     (game) => {
       const newGame = { ...game };
-      newGame.description = "";
+      newGame.notes = "";
       axios.post(`http://localhost:8080/games`, newGame).then(() => {
         getDBGames();
       });
