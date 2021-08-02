@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useCallback } from "react";
 
 export const useDB = () => DBContext;
-export const useDBUpdatae = () => DBUpdateContext;
+export const useDBUpdate = () => DBUpdateContext;
 
 const DBContext = React.createContext("loading");
 const DBUpdateContext = React.createContext({});
