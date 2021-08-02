@@ -3,16 +3,15 @@ import FavoriteGame from "./FavoriteGame/FavoriteGame";
 
 const FavoritesContainer = () => {
   const games = useDB();
-  console.log(games);
   if (games === "loading") {
     return <p>Loading...</p>;
   }
 
   const boardGames = games.map((game, i) => (
-    <FavoriteGame game={game} key={game.title + i.toString()} />
+    <FavoriteGame game={game} key={game.href} />
   ));
 
-  return null;
+  return <div>{boardGames}</div>;
 };
 
 export default FavoritesContainer;
