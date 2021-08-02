@@ -1,8 +1,8 @@
 import axios from "axios";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 
-export const useDB = () => DBContext;
-export const useDBUpdate = () => DBUpdateContext;
+export const useDB = () => useContext(DBContext);
+export const useDBUpdate = () => useContext(DBUpdateContext);
 
 const DBContext = React.createContext("loading");
 const DBUpdateContext = React.createContext({});
