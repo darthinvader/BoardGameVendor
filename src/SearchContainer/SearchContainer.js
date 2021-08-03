@@ -50,7 +50,7 @@ const SearchContainer = () => {
         return;
       }
 
-      // Gets all the games Promises from the xml api of boardgamegeek.com and
+      // Gets all the games Promises from the xml api of boardgamegeek.com and then resolve them
       let mappedGames = gamesData.map((game) => getGameById(game, canceled));
 
       // Fullfiling all promises
