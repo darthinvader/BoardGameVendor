@@ -1,3 +1,3 @@
 # Board game vendor
 
-A react based application to manage a board games.
+A react based application to manage favorite board games.
