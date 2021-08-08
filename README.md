@@ -34,3 +34,9 @@ Favorites use axios to get, delete and update the favorites from the json-server
 - scss
 
 ---
+
+<h2>Setup</h2>
+
+Clone this repo and run `npm install` to install all dependencies.
+
+Then run `npm install -g json-server` to install json server globally.
