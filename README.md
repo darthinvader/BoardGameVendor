@@ -40,3 +40,11 @@ Favorites use axios to get, delete and update the favorites from the json-server
 Clone this repo and run `npm install` to install all dependencies.
 
 Then run `npm install -g json-server` to install json server globally.
+
+---
+
+<h2>Usage</h2>
+
+After completing the setup above, go to the root folder and run `npm run db` to start the json-server.
+
+Then run `npm start` to start the server and open the app in your browser.
