@@ -27,6 +27,7 @@ Favorites use axios to get, delete and update the favorites from the json-server
 <h2>Technologies</h2>
 
 - Reactjs
+- React-Router
 - Axios
 - json-server
 - CRUD
